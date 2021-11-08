@@ -139,6 +139,7 @@ a:hover {
   line-height: 20px;
   text-align: center;
   color: rgba(39, 33, 66, 0.4);
+  font-weight: bold;
 }
 .Weather .WeatherForecast canvas {
   display: block;

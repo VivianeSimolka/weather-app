@@ -27,16 +27,7 @@ function formatDateTime(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let day1 = document.querySelector("#day1");
-  let day2 = document.querySelector("#day2");
-  let day3 = document.querySelector("#day3");
-  let day4 = document.querySelector("#day4");
-  let day5 = document.querySelector("#day5");
-  day1.innerHTML = days[date.getDay() + 1];
-  day2.innerHTML = days[date.getDay() + 2];
-  day3.innerHTML = days[date.getDay() + 3];
-  day4.innerHTML = days[date.getDay() + 4];
-  day5.innerHTML = days[date.getDay() + 5];
+
   return `${day} ${hours}:${minutes}`;
 }
 
@@ -60,6 +51,7 @@ function updateTemperature(response) {
   dateTime.innerHTML = formatDateTime(response.data.dt * 1000);
   icon.setAttribute("src", iconURL);
   icon.setAttribute("alt", response.data.weather[0].description);
+  updateForecast();
 }
 
 function search(city) {
@@ -90,6 +82,33 @@ function updateToCelcius(event) {
   temperature.innerHTML = Math.round(celciusTemperature);
   celcius.classList.add("active");
   fahrenheit.classList.remove("active");
+}
+
+function updateForecast() {
+  let forecast = document.querySelector("#weather-forecast");
+
+  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  let forecastHTML = `<div class="WeatherForecast row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+            <div class="WeatherForecastPreview">
+                <div class="forecast-time" id="day3">${day}</div>
+                  <canvas width="38" height="38"></canvas>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">9°</span>
+                    <span class="forecast-temperature-min">7°</span>
+                  </div>
+            </div>
+        </div>
+  `;
+  });
+
+  forecast.innerHTML = forecastHTML + `</div>`;
+  forecast.innerHTML = forecastHTML;
 }
 
 axios.get(apiURL).then(updateTemperature);
