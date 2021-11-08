@@ -71,7 +71,14 @@ function updateToFahrenheit(event) {
   temperature.innerHTML = fahrenheitTemp;
 }
 
+function updateToCelcius(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-temperature");
+  temperature.innerHTML = Math.round(celciusTemperature);
+}
+
 search("Berlin");
 axios.get(apiURL).then(updateTemperature);
 form.addEventListener("submit", citySubmit);
 fahrenheit.addEventListener("click", updateToFahrenheit);
+celcius.addEventListener("click", updateToCelcius);
