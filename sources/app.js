@@ -1,7 +1,8 @@
 let apiKey = "485e84787811d6e504c528765edb36fe";
-let city = "Seoul";
+let city = "Berlin";
 let unit = "metric";
 let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+let form = document.querySelector("#city-search");
 
 function formatDateTime(timestamp) {
   let days = [
@@ -35,8 +36,6 @@ function updateTemperature(response) {
   let dateTime = document.querySelector("#date-time");
   let icon = document.querySelector("#day-weather-icon");
   let iconURL = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
-  console.log(response.data.weather[0].icon);
-  console.log(iconURL);
 
   temperature.innerHTML = Math.round(response.data.main.temp);
   city.innerHTML = response.data.name;
@@ -45,5 +44,23 @@ function updateTemperature(response) {
   wind.innerHTML = Math.round(response.data.wind.speed);
   dateTime.innerHTML = formatDateTime(response.data.dt * 1000);
   icon.setAttribute("src", iconURL);
+  icon.setAttribute("alt", response.data.weather[0].description);
 }
+
+function search(city) {
+  let apiKey = "485e84787811d6e504c528765edb36fe";
+  let unit = "metric";
+  let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  axios.get(apiURL).then(updateTemperature);
+}
+
+function citySubmit(event) {
+  event.preventDefault();
+  let cityInput = document.querySelector("#submit-form");
+  search(cityInput.value);
+}
+
+search("Berlin");
 axios.get(apiURL).then(updateTemperature);
+
+form.addEventListener("submit", citySubmit);
