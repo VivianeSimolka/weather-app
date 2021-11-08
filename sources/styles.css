@@ -6,7 +6,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #24527a;
   text-align: left;
   background-color: #fff;
 }
@@ -32,12 +32,12 @@ body {
 
 .Weather form {
   margin-top: 40px;
-  border-bottom: 1px solid #f9f7fe;
+  border-bottom: 1px solid #e0ebeb;
   padding-bottom: 30px;
 }
 
 .Weather .btn {
-  background: #885df1;
+  background: #5dacbd;
   font-weight: 700;
   font-size: 16px;
   padding: 15px 0;
@@ -62,12 +62,12 @@ body {
   list-style: none;
 }
 .Weather li strong {
-  color: #f65282;
+  color: #5dacbd;
   font-weight: 400;
 }
 
 .Weather .search-input {
-  background: #f9f7fe;
+  background: #edf8f8;
   border: none;
   padding: 15px 20px;
   display: inline-block;
@@ -84,11 +84,11 @@ body {
   font-weight: 700;
   font-size: 38px;
   line-height: 48px;
-  color: #272142;
+  color: #24527a;
 }
 
 .Weather .temperature {
-  color: #212121;
+  color: #24527a;
   font-weight: 400;
   margin-left: 10px;
   font-weight: 700;
@@ -137,7 +137,7 @@ body {
   font-style: normal;
   font-size: 18px;
   line-height: 1.5;
-  color: #f65282;
+  color: #5dacbd;
   font-weight: 700;
 }
 .WeatherForecast .forecast-temperature-min {
