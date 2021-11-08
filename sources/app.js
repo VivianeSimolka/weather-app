@@ -3,6 +3,9 @@ let city = "Berlin";
 let unit = "metric";
 let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
 let form = document.querySelector("#city-search");
+let fahrenheit = document.querySelector("#fahrenheit");
+let celcius = document.querySelector("#celcius");
+let celciusTemperature = null;
 
 function formatDateTime(timestamp) {
   let days = [
@@ -36,8 +39,9 @@ function updateTemperature(response) {
   let dateTime = document.querySelector("#date-time");
   let icon = document.querySelector("#day-weather-icon");
   let iconURL = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+  celciusTemperature = response.data.main.temp;
 
-  temperature.innerHTML = Math.round(response.data.main.temp);
+  temperature.innerHTML = Math.round(celciusTemperature);
   city.innerHTML = response.data.name;
   description.innerHTML = response.data.weather[0].description;
   humidity.innerHTML = response.data.main.humidity;
@@ -60,7 +64,14 @@ function citySubmit(event) {
   search(cityInput.value);
 }
 
+function updateToFahrenheit(event) {
+  event.preventDefault();
+  let fahrenheitTemp = Math.round((celciusTemperature * 9) / 5 + 32);
+  let temperature = document.querySelector("#current-temperature");
+  temperature.innerHTML = fahrenheitTemp;
+}
+
 search("Berlin");
 axios.get(apiURL).then(updateTemperature);
-
 form.addEventListener("submit", citySubmit);
+fahrenheit.addEventListener("click", updateToFahrenheit);

@@ -12,7 +12,7 @@ body {
 a {
   text-decoration: none;
   color: #5dacbd;
-  transition: ease-in-out;
+  transition: ease-in-out 200ms;
 }
 
 a:hover {
@@ -114,7 +114,7 @@ a:hover {
   font-weight: 400;
   position: relative;
   line-height: 1;
-  top: -34px;
+  top: -40px;
 }
 
 .p-0 {
@@ -161,4 +161,15 @@ a:hover {
   line-height: 18px;
   text-align: center;
   color: rgba(39, 33, 66, 0.4);
+}
+
+#celcius,
+#fahrenheit {
+  color: #24527a;
+  transition: ease-in-out 200ms;
+}
+
+#celcius:hover,
+#fahrenheit:hover {
+  color: #5dacbd;
 }
