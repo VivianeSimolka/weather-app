@@ -1,5 +1,5 @@
 let apiKey = "485e84787811d6e504c528765edb36fe";
-let city = "Berlin";
+let city = "Seoul";
 let unit = "metric";
 let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
 
@@ -33,14 +33,17 @@ function updateTemperature(response) {
   let humidity = document.querySelector("#humidity");
   let wind = document.querySelector("#wind");
   let dateTime = document.querySelector("#date-time");
+  let icon = document.querySelector("#day-weather-icon");
+  let iconURL = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+  console.log(response.data.weather[0].icon);
+  console.log(iconURL);
+
   temperature.innerHTML = Math.round(response.data.main.temp);
   city.innerHTML = response.data.name;
   description.innerHTML = response.data.weather[0].description;
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
   dateTime.innerHTML = formatDateTime(response.data.dt * 1000);
+  icon.setAttribute("src", iconURL);
 }
 axios.get(apiURL).then(updateTemperature);
-
-// #humidity
-// #wind
