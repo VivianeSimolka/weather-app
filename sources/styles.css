@@ -8,7 +8,17 @@ body {
   line-height: 1.5;
   color: #24527a;
   text-align: left;
-  background-color: #fff;
+  background-color: #edf8f8;
+}
+
+a {
+  text-decoration: none;
+  color: #5dacbd;
+  transition: ease-in-out;
+}
+
+a:hover {
+  color: #24527a;
 }
 
 .App {
@@ -150,7 +160,4 @@ body {
   line-height: 18px;
   text-align: center;
   color: rgba(39, 33, 66, 0.4);
-}
-.Weather footer a {
-  color: #885df1;
 }
