@@ -169,6 +169,11 @@ a:hover {
   transition: ease-in-out 200ms;
 }
 
+.active:hover {
+  color: #24527a;
+  cursor: default;
+}
+
 #celcius:hover,
 #fahrenheit:hover {
   color: #5dacbd;

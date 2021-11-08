@@ -69,12 +69,16 @@ function updateToFahrenheit(event) {
   let fahrenheitTemp = Math.round((celciusTemperature * 9) / 5 + 32);
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = fahrenheitTemp;
+  celcius.classList.remove("active");
+  fahrenheit.classList.add("active");
 }
 
 function updateToCelcius(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = Math.round(celciusTemperature);
+  celcius.classList.add("active");
+  fahrenheit.classList.remove("active");
 }
 
 search("Berlin");
