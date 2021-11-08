@@ -27,6 +27,16 @@ function formatDateTime(timestamp) {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
+  let day1 = document.querySelector("#day1");
+  let day2 = document.querySelector("#day2");
+  let day3 = document.querySelector("#day3");
+  let day4 = document.querySelector("#day4");
+  let day5 = document.querySelector("#day5");
+  day1.innerHTML = days[date.getDay() + 1];
+  day2.innerHTML = days[date.getDay() + 2];
+  day3.innerHTML = days[date.getDay() + 3];
+  day4.innerHTML = days[date.getDay() + 4];
+  day5.innerHTML = days[date.getDay() + 5];
   return `${day} ${hours}:${minutes}`;
 }
 
@@ -39,6 +49,7 @@ function updateTemperature(response) {
   let dateTime = document.querySelector("#date-time");
   let icon = document.querySelector("#day-weather-icon");
   let iconURL = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+
   celciusTemperature = response.data.main.temp;
 
   temperature.innerHTML = Math.round(celciusTemperature);
@@ -81,8 +92,8 @@ function updateToCelcius(event) {
   fahrenheit.classList.remove("active");
 }
 
-search("Berlin");
 axios.get(apiURL).then(updateTemperature);
 form.addEventListener("submit", citySubmit);
 fahrenheit.addEventListener("click", updateToFahrenheit);
 celcius.addEventListener("click", updateToCelcius);
+search("Berlin");
