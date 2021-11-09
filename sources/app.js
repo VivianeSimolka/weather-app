@@ -44,7 +44,6 @@ function formatDateTime(timestamp) {
   let year = date.getFullYear();
   let month = months[date.getMonth()];
   let dayNumber = date.getDate();
-  console.log(dayNumber);
   let day = days[date.getDay()];
   let hours = date.getHours();
   let minutes = date.getMinutes();
