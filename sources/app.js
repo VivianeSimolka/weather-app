@@ -38,7 +38,7 @@ function formatDay(timestamp) {
 }
 
 function getWeatherForecast(coordinates) {
-  let forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&${unit}&appid=${apiKey}`;
+  let forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&units=${unit}&appid=${apiKey}`;
   axios.get(forecastURL).then(updateForecast);
 }
 
@@ -100,10 +100,6 @@ function updateForecast(response) {
   let forecast = document.querySelector("#weather-forecast");
   let forecastSource = response.data.daily;
   console.log(forecastSource[0].weather[0].icon);
-  //console.log(forecastSource[0].dt * 1000); // day name source
-  //console.log(forecastSource[0].weather[0].description); // weather icon url path
-  //console.log(forecastSource[0].temp.max); // max-temp url path
-  // console.log(forecastSource[0].temp.min); // min-temp url path
 
   // `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 
