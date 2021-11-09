@@ -76,7 +76,6 @@ function search(city) {
   let apiKey = "485e84787811d6e504c528765edb36fe";
   let unit = "metric";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
-  console.log(apiURL);
   axios.get(apiURL).then(updateTemperature);
 }
 
@@ -118,7 +117,6 @@ function updateToCelcius(event) {
 function updateForecast(response) {
   let forecast = document.querySelector("#weather-forecast");
   let forecastSource = response.data.daily;
-  console.log(forecastSource[0].weather[0].icon);
 
   let forecastHTML = `<div class="WeatherForecast row">`;
   forecastSource.forEach(function (dailyForecast, index) {
@@ -160,9 +158,24 @@ function updateForecast(response) {
   forecast.innerHTML = forecastHTML;
 }
 
+function retrievePosition(position) {
+  let apiKey = "6810fbd82d0a172a870e47bd04543f6c";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(url).then(updateTemperature);
+}
+
+function updateLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(retrievePosition);
+}
+
+let locateMe = document.querySelector("#locate-me");
+locateMe.addEventListener("click", updateLocation);
+
 axios.get(apiURL).then(updateTemperature);
 form.addEventListener("submit", citySubmit);
 fahrenheit.addEventListener("click", updateToFahrenheit);
 celcius.addEventListener("click", updateToCelcius);
 search("Berlin");
-console.log(celciusForecast);
