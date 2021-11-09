@@ -5,6 +5,7 @@ let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${
 let form = document.querySelector("#city-search");
 let fahrenheit = document.querySelector("#fahrenheit");
 let celcius = document.querySelector("#celcius");
+let locateMe = document.querySelector("#locate-me");
 let celciusTemperature = null;
 let celciusForecast = [
   { max: 0, min: 0 },
@@ -122,6 +123,9 @@ function updateForecast(response) {
   forecastSource.forEach(function (dailyForecast, index) {
     console.log(dailyForecast.weather[0].icon);
     console.log(dailyForecast.weather[0].description);
+    console.log(
+      `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`
+    );
     if (index < 5) {
       celciusForecast[index] = {
         max: dailyForecast.temp.max,
@@ -135,8 +139,7 @@ function updateForecast(response) {
                 )}</div>
                   <img src="http://openweathermap.org/img/wn/${
                     dailyForecast.weather[0].icon
-                  }
-                  @2x.png alt="${dailyForecast.weather[0].description}" 
+                  }@2x.png" alt="${dailyForecast.weather[0].description}" 
                   width="38" height="38"/>
                   <div class="forecast-temperature">
                     <span class="forecast-temperature-max" id="max-${index}">${Math.round(
@@ -171,11 +174,9 @@ function updateLocation(event) {
   navigator.geolocation.getCurrentPosition(retrievePosition);
 }
 
-let locateMe = document.querySelector("#locate-me");
-locateMe.addEventListener("click", updateLocation);
-
 axios.get(apiURL).then(updateTemperature);
 form.addEventListener("submit", citySubmit);
 fahrenheit.addEventListener("click", updateToFahrenheit);
 celcius.addEventListener("click", updateToCelcius);
+locateMe.addEventListener("click", updateLocation);
 search("Berlin");
