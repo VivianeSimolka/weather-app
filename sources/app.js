@@ -34,8 +34,7 @@ function formatDateTime(timestamp) {
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  let day = days[date.getDay()];
-  return day;
+  return days[date.getDay()];
 }
 
 function getWeatherForecast(coordinates) {
@@ -109,10 +108,11 @@ function updateForecast(response) {
   // `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 
   let forecastHTML = `<div class="WeatherForecast row">`;
-  forecastSource.forEach(function (dailyForecast) {
+  forecastSource.forEach(function (dailyForecast, index) {
     console.log(dailyForecast.weather[0].icon);
     console.log(dailyForecast.weather[0].description);
-    forecastHTML += `
+    if (index < 5) {
+      forecastHTML += `
         <div class="col">
             <div class="WeatherForecastPreview">
                 <div class="forecast-time" id="day3">${formatDay(
@@ -136,6 +136,7 @@ function updateForecast(response) {
             </div>
         </div>
   `;
+    }
   });
 
   forecast.innerHTML = forecastHTML + `</div>`;
