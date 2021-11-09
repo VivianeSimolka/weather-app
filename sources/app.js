@@ -91,6 +91,12 @@ function updateToFahrenheit(event) {
   let fahrenheitTemp = Math.round((celciusTemperature * 9) / 5 + 32);
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = fahrenheitTemp;
+  // [0,1,2,3,4].forEach(function(index) {
+  // let day-max = document.querySelector("#max-${index}");
+  // let day-min = document.querySelector("#min-${index}");
+  // day-max.innerHTML = (celciusForecast[index].max * 9) / 5 +32
+  // day-min.innerHTML = (celciusForecast[index].min * 9) / 5 +32
+  //})
   celcius.classList.remove("active");
   fahrenheit.classList.add("active");
 }
