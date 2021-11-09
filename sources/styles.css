@@ -198,6 +198,7 @@ a:hover {
 #hidden-message {
   text-align: right;
   color: #5dacbd;
+  bottom: -41px;
 }
 
 #description {
