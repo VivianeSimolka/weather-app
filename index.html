@@ -26,78 +26,96 @@
       <div class="App">
         <div class="container">
           <div class="Weather">
-            <img src="media/giraffe_icon.png" alt="Giraffe icon" class="icon" />
-            <a href="#" id="locate-me">Search my location</a>
-            <form id="city-search">
+            <div class="row">
               <div class="row">
                 <div class="col-9">
-                  <input
-                    type="search"
-                    placeholder="Please type a city"
-                    class="form-control search-input"
-                    id="submit-form"
+                  <img
+                    src="media/giraffe_icon.png"
+                    alt="Giraffe icon"
+                    class="icon"
                   />
+                  <a href="#" id="locate-me">Search my location</a>
                 </div>
-                <div class="col-3">
-                  <input
-                    type="submit"
-                    class="btn btn-primary w-100"
-                    value="Search"
-                  />
-                </div>
+
+                <div class="col-3" id="hidden-message"></div>
               </div>
-            </form>
-            <div class="weather-info">
-              <div class="row">
-                <div class="col-6">
-                  <h1 id="current-city">Berlin</h1>
-                  <ul>
-                    <li>
-                      <span id="date-time">Monday 08:30</span>
-                    </li>
-                    <li>
-                      <span id="description">rainy</span>,
-                    Humidity: <strong><span id="humidity">41</span>%</strong>,
-                      Wind:
-                      <strong><span id="wind">0.45</span>km/h</strong>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-6">
-                  <div class="temperature-container d-flex justify-content-end">
-                    <img
-                      src="http://openweathermap.org/img/wn/04d@2x.png"
-                      alt="weather-icon"
-                      id="day-weather-icon"
+
+              <form id="city-search">
+                <div class="row">
+                  <div class="col-9">
+                    <input
+                      type="search"
+                      placeholder="Please type a city"
+                      class="form-control search-input"
+                      id="submit-form"
                     />
-                    <div>
-                      <span class="temperature" id="current-temperature"
-                        >13</span
-                      >
-                      <span class="unit"
-                        ><a href="#" id="celcius" class="active">°C</a> |
-                        <a href="#" id="fahrenheit">°F</a></span
-                      >
+                  </div>
+                  <div class="col-3">
+                    <input
+                      type="submit"
+                      class="btn btn-primary w-100"
+                      value="Search"
+                    />
+                  </div>
+                </div>
+              </form>
+              <div class="weather-info">
+                <div class="row">
+                  <div class="col-6">
+                    <h1 id="current-city">Berlin</h1>
+                    <ul>
+                      <li>
+                        <span id="date-time">Monday 08:30</span>
+                      </li>
+                      <li>
+                        <span id="description">rainy</span>, Humidity:
+                        <strong><span id="humidity">41</span>%</strong>, Wind:
+                        <strong><span id="wind">0.45</span>km/h</strong>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-6">
+                    <div
+                      class="temperature-container d-flex justify-content-end"
+                    >
+                      <img
+                        src="http://openweathermap.org/img/wn/04d@2x.png"
+                        alt="weather-icon"
+                        id="day-weather-icon"
+                      />
+                      <div>
+                        <span class="temperature" id="current-temperature"
+                          >13</span
+                        >
+                        <span class="unit"
+                          ><a href="#" id="celcius" class="active">°C</a> |
+                          <a href="#" id="fahrenheit">°F</a></span
+                        >
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
+
+              <div class="weather-forecast" id="weather-forecast"></div>
+
+              <footer>
+                <a
+                  href="https://github.com/VivianeSimolka/weather-app"
+                  target="_blank"
+                  >Open source code</a
+                >
+                by Viviane<img
+                  src="media/giraffe_icon.png"
+                  alt="Giraffe icon"
+                  class="icon"
+                  id="footer-icon"
+                />
+              </footer>
             </div>
-            
-            <div class="weather-forecast" id="weather-forecast"></div>
-            
-            <footer>
-              <a
-                href="https://github.com/VivianeSimolka/weather-app"
-                target="_blank"
-                >Open source code</a
-              >
-              by Viviane<img src="media/giraffe_icon.png" alt="Giraffe icon" class="icon" id="footer-icon" />
-            </footer>
           </div>
         </div>
       </div>
-    </div>
     </div>
     <script src="sources/app.js"></script>
   </body>

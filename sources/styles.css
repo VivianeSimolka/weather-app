@@ -188,10 +188,16 @@ a:hover {
   margin: 15px;
 }
 
-#locate-me {
+#locate-me,
+#hidden-message {
   position: relative;
   font-size: 18px;
   bottom: -22px;
+}
+
+#hidden-message {
+  text-align: right;
+  color: #5dacbd;
 }
 
 #description {

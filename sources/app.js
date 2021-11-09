@@ -78,11 +78,12 @@ function updateTemperature(response) {
   let dateTime = document.querySelector("#date-time");
   let icon = document.querySelector("#day-weather-icon");
   let iconURL = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+  let searchedCity = response.data.name;
 
   celciusTemperature = response.data.main.temp;
 
   temperature.innerHTML = Math.round(celciusTemperature);
-  city.innerHTML = response.data.name;
+  city.innerHTML = searchedCity;
   description.innerHTML = response.data.weather[0].description;
   humidity.innerHTML = response.data.main.humidity;
   wind.innerHTML = Math.round(response.data.wind.speed);
@@ -90,6 +91,14 @@ function updateTemperature(response) {
   icon.setAttribute("src", iconURL);
   icon.setAttribute("alt", response.data.weather[0].description);
   getWeatherForecast(response.data.coord);
+
+  if (searchedCity === "Aiglun") {
+    document.querySelector("#hidden-message").innerHTML = "Salut Nicoline !";
+  } else if (searchedCity === "Amsterdam") {
+    document.querySelector("#hidden-message").innerHTML = "Salut Coralie !";
+  } else if (searchedCity === "Mignaloux-Beauvoir") {
+    document.querySelector("#hidden-message").innerHTML = "Salut les parents !";
+  }
 }
 
 function search(city) {
