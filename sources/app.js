@@ -91,12 +91,12 @@ function updateToFahrenheit(event) {
   let fahrenheitTemp = Math.round((celciusTemperature * 9) / 5 + 32);
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = fahrenheitTemp;
-  // [0,1,2,3,4].forEach(function(index) {
-  // let day-max = document.querySelector("#max-${index}");
-  // let day-min = document.querySelector("#min-${index}");
-  // day-max.innerHTML = (celciusForecast[index].max * 9) / 5 +32
-  // day-min.innerHTML = (celciusForecast[index].min * 9) / 5 +32
-  //})
+  [0, 1, 2, 3, 4].forEach(function (index) {
+    let dayMax = document.querySelector(`#max-${index}`);
+    let dayMin = document.querySelector(`#min-${index}`);
+    dayMax.innerHTML = Math.round((celciusForecast[index].max * 9) / 5 + 32);
+    dayMin.innerHTML = Math.round((celciusForecast[index].min * 9) / 5 + 32);
+  });
   celcius.classList.remove("active");
   fahrenheit.classList.add("active");
 }
@@ -105,6 +105,12 @@ function updateToCelcius(event) {
   event.preventDefault();
   let temperature = document.querySelector("#current-temperature");
   temperature.innerHTML = Math.round(celciusTemperature);
+  [0, 1, 2, 3, 4].forEach(function (index) {
+    let dayMax = document.querySelector(`#max-${index}`);
+    let dayMin = document.querySelector(`#min-${index}`);
+    dayMax.innerHTML = Math.round(celciusForecast[index].max);
+    dayMin.innerHTML = Math.round(celciusForecast[index].min);
+  });
   celcius.classList.add("active");
   fahrenheit.classList.remove("active");
 }
@@ -113,8 +119,6 @@ function updateForecast(response) {
   let forecast = document.querySelector("#weather-forecast");
   let forecastSource = response.data.daily;
   console.log(forecastSource[0].weather[0].icon);
-
-  // `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 
   let forecastHTML = `<div class="WeatherForecast row">`;
   forecastSource.forEach(function (dailyForecast, index) {
@@ -139,11 +143,11 @@ function updateForecast(response) {
                   <div class="forecast-temperature">
                     <span class="forecast-temperature-max" id="max-${index}">${Math.round(
         dailyForecast.temp.max
-      )}°
+      )}</span><span>°
                       </span>
                     <span class="forecast-temperature-min" id="min-${index}">${Math.round(
         dailyForecast.temp.min
-      )}°
+      )}</span><span>°
                       </span>
                   </div>
             </div>
