@@ -63,6 +63,7 @@ function search(city) {
   let apiKey = "485e84787811d6e504c528765edb36fe";
   let unit = "metric";
   let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${unit}&appid=${apiKey}`;
+  console.log(apiURL);
   axios.get(apiURL).then(updateTemperature);
 }
 
@@ -89,8 +90,12 @@ function updateToCelcius(event) {
   fahrenheit.classList.remove("active");
 }
 
-function updateForecast() {
+function updateForecast(response) {
   let forecast = document.querySelector("#weather-forecast");
+  console.log(response.data.daily[0].dt * 1000); // day name source
+  console.log(response.data.daily[0].weather[0].icon); // weather icon url path
+  console.log(response.data.daily[0].temp.max); // max-temp url path
+  console.log(response.data.daily[0].temp.min); // min-temp url path
 
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
 
