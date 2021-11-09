@@ -121,11 +121,6 @@ function updateForecast(response) {
 
   let forecastHTML = `<div class="WeatherForecast row">`;
   forecastSource.forEach(function (dailyForecast, index) {
-    console.log(dailyForecast.weather[0].icon);
-    console.log(dailyForecast.weather[0].description);
-    console.log(
-      `http://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`
-    );
     if (index < 5) {
       celciusForecast[index] = {
         max: dailyForecast.temp.max,
@@ -139,8 +134,10 @@ function updateForecast(response) {
                 )}</div>
                   <img src="http://openweathermap.org/img/wn/${
                     dailyForecast.weather[0].icon
-                  }@2x.png" alt="${dailyForecast.weather[0].description}" 
-                  width="38" height="38"/>
+                  }@2x.png" alt="${
+        dailyForecast.weather[0].description
+      }" class="forecast-icon" 
+                  width="44" height="44"/>
                   <div class="forecast-temperature">
                     <span class="forecast-temperature-max" id="max-${index}">${Math.round(
         dailyForecast.temp.max
