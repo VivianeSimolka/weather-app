@@ -31,6 +31,11 @@ function formatDateTime(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function getWeatherForecast(coordinates) {
+  let forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&${unit}&appid=${apiKey}`;
+  axios.get(forecastURL).then(updateForecast);
+}
+
 function updateTemperature(response) {
   let temperature = document.querySelector("#current-temperature");
   let city = document.querySelector("#current-city");
@@ -51,7 +56,7 @@ function updateTemperature(response) {
   dateTime.innerHTML = formatDateTime(response.data.dt * 1000);
   icon.setAttribute("src", iconURL);
   icon.setAttribute("alt", response.data.weather[0].description);
-  updateForecast();
+  getWeatherForecast(response.data.coord);
 }
 
 function search(city) {

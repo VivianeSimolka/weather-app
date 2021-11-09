@@ -179,3 +179,7 @@ a:hover {
 #fahrenheit:hover {
   color: #5dacbd;
 }
+
+.form-control:focus {
+  background: #edf8f8;
+}
