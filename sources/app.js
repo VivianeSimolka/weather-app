@@ -31,6 +31,13 @@ function formatDateTime(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let day = days[date.getDay()];
+  return day;
+}
+
 function getWeatherForecast(coordinates) {
   let forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&${unit}&appid=${apiKey}`;
   axios.get(forecastURL).then(updateForecast);
@@ -92,25 +99,39 @@ function updateToCelcius(event) {
 
 function updateForecast(response) {
   let forecast = document.querySelector("#weather-forecast");
-  console.log(response.data.daily[0].dt * 1000); // day name source
-  console.log(response.data.daily[0].weather[0].icon); // weather icon url path
-  console.log(response.data.daily[0].temp.max); // max-temp url path
-  console.log(response.data.daily[0].temp.min); // min-temp url path
+  let forecastSource = response.data.daily;
+  console.log(forecastSource[0].weather[0].icon);
+  //console.log(forecastSource[0].dt * 1000); // day name source
+  //console.log(forecastSource[0].weather[0].description); // weather icon url path
+  //console.log(forecastSource[0].temp.max); // max-temp url path
+  // console.log(forecastSource[0].temp.min); // min-temp url path
 
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+  // `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
 
   let forecastHTML = `<div class="WeatherForecast row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecastSource.forEach(function (dailyForecast) {
+    console.log(dailyForecast.weather[0].icon);
+    console.log(dailyForecast.weather[0].description);
+    forecastHTML += `
         <div class="col">
             <div class="WeatherForecastPreview">
-                <div class="forecast-time" id="day3">${day}</div>
-                  <canvas width="38" height="38"></canvas>
+                <div class="forecast-time" id="day3">${formatDay(
+                  dailyForecast.dt
+                )}</div>
+                  <img src="http://openweathermap.org/img/wn/${
+                    dailyForecast.weather[0].icon
+                  }
+                  @2x.png alt="${dailyForecast.weather[0].description}" 
+                  width="38" height="38"/>
                   <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">9°</span>
-                    <span class="forecast-temperature-min">7°</span>
+                    <span class="forecast-temperature-max">${Math.round(
+                      dailyForecast.temp.max
+                    )}°
+                      </span>
+                    <span class="forecast-temperature-min">${Math.round(
+                      dailyForecast.temp.min
+                    )}°
+                      </span>
                   </div>
             </div>
         </div>
