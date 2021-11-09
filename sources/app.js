@@ -6,6 +6,13 @@ let form = document.querySelector("#city-search");
 let fahrenheit = document.querySelector("#fahrenheit");
 let celcius = document.querySelector("#celcius");
 let celciusTemperature = null;
+let celciusForecast = [
+  { max: 0, min: 0 },
+  { max: 0, min: 0 },
+  { max: 0, min: 0 },
+  { max: 0, min: 0 },
+  { max: 0, min: 0 },
+];
 
 function formatDateTime(timestamp) {
   let days = [
@@ -108,6 +115,10 @@ function updateForecast(response) {
     console.log(dailyForecast.weather[0].icon);
     console.log(dailyForecast.weather[0].description);
     if (index < 5) {
+      celciusForecast[index] = {
+        max: dailyForecast.temp.max,
+        min: dailyForecast.temp.min,
+      };
       forecastHTML += `
         <div class="col">
             <div class="WeatherForecastPreview">
@@ -120,13 +131,13 @@ function updateForecast(response) {
                   @2x.png alt="${dailyForecast.weather[0].description}" 
                   width="38" height="38"/>
                   <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">${Math.round(
-                      dailyForecast.temp.max
-                    )}°
+                    <span class="forecast-temperature-max" id="max-${index}">${Math.round(
+        dailyForecast.temp.max
+      )}°
                       </span>
-                    <span class="forecast-temperature-min">${Math.round(
-                      dailyForecast.temp.min
-                    )}°
+                    <span class="forecast-temperature-min" id="min-${index}">${Math.round(
+        dailyForecast.temp.min
+      )}°
                       </span>
                   </div>
             </div>
@@ -144,3 +155,4 @@ form.addEventListener("submit", citySubmit);
 fahrenheit.addEventListener("click", updateToFahrenheit);
 celcius.addEventListener("click", updateToCelcius);
 search("Berlin");
+console.log(celciusForecast);
