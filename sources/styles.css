@@ -42,7 +42,7 @@ a:hover {
 }
 
 .Weather form {
-  margin-top: 40px;
+  margin-top: 30px;
   border-bottom: 1px solid #e0ebeb;
   padding-bottom: 30px;
 }
@@ -56,7 +56,7 @@ a:hover {
   height: 50px;
 }
 
-.WeatherInfo {
+.weather-info {
   margin-top: 20px;
 }
 
@@ -121,7 +121,7 @@ a:hover {
   padding: 0 !important;
 }
 
-.WeatherInfo .temperature-container {
+.weather-info .temperature-container {
   margin-top: 30px;
 }
 .Weather canvas {
@@ -184,7 +184,23 @@ a:hover {
   background: #edf8f8;
 }
 
+.forecast-icon {
+  margin: 15px;
+}
+
 #locate-me {
   position: relative;
   font-size: 18px;
+  bottom: -22px;
+}
+
+#description {
+  text-transform: capitalize;
+}
+
+#footer-icon {
+  position: relative;
+  top: -11px;
+  left: -5px;
+  max-height: 40px;
 }

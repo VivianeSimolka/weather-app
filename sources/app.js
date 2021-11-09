@@ -25,7 +25,26 @@ function formatDateTime(timestamp) {
     "Friday",
     "Saturday",
   ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   let date = new Date(timestamp);
+  let year = date.getFullYear();
+  let month = months[date.getMonth()];
+  let dayNumber = date.getDate();
+  console.log(dayNumber);
   let day = days[date.getDay()];
   let hours = date.getHours();
   let minutes = date.getMinutes();
@@ -36,7 +55,7 @@ function formatDateTime(timestamp) {
     minutes = `0${minutes}`;
   }
 
-  return `${day} ${hours}:${minutes}`;
+  return `${day} ${month} ${dayNumber}, ${year} at ${hours}:${minutes}`;
 }
 
 function formatDay(timestamp) {
@@ -137,7 +156,7 @@ function updateForecast(response) {
                   }@2x.png" alt="${
         dailyForecast.weather[0].description
       }" class="forecast-icon" 
-                  width="44" height="44"/>
+                  width="64" height="64"/>
                   <div class="forecast-temperature">
                     <span class="forecast-temperature-max" id="max-${index}">${Math.round(
         dailyForecast.temp.max
@@ -145,8 +164,7 @@ function updateForecast(response) {
                       </span>
                     <span class="forecast-temperature-min" id="min-${index}">${Math.round(
         dailyForecast.temp.min
-      )}</span><span>°
-                      </span>
+      )}<span>°</span></span>
                   </div>
             </div>
         </div>
