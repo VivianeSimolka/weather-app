@@ -124,9 +124,6 @@ a:hover {
 .weather-info .temperature-container {
   margin-top: 30px;
 }
-.Weather canvas {
-  margin: 10px 0;
-}
 
 .WeatherForecast {
   text-align: center;
